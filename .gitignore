@@ -1,0 +1,13 @@
+# IDE
+.vscode/
+
+# Python
+__pycache__/
+
+
+# build
+build/
+install/
+log/
+
+notes/
