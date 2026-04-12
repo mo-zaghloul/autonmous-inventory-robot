@@ -45,7 +45,7 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory("ros_gz_sim"), "launch"), "/gz_sim.launch.py"]),
                 launch_arguments=[
-                    ("gz_args", [" -v 4", " -r", " empty.sdf"]
+                    ("gz_args", [" -v 4", " -r", " shapes.sdf"]
                     )
                 ]
              )
@@ -65,9 +65,20 @@ def generate_launch_description():
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
             "/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist",
             "/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry",
-            "/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V",
+            "/model/bumperbot/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V",
             "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
+        ],
+        remappings=[
+            ("/model/bumperbot/tf", "/tf"),
         ]
+)
+
+    rviz_node = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        output="screen",
+        arguments=["-d", os.path.join(bumperbot_description, "rviz", "display.rviz")],
     )
 
     return LaunchDescription([
@@ -77,4 +88,5 @@ def generate_launch_description():
         gazebo,
         gz_spawn_entity,
         gz_ros2_bridge,
+        rviz_node
     ])
