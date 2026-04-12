@@ -2,9 +2,16 @@
 
 <robot name="bumperbot" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <!-- Base Footprint -->
-  <link name="base_footprint"/>
-  
+  <!-- BASE_FOOTPRINT LINK -->
+  <link name="base_footprint">
+  </link>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.033" rpy="0 0 0"/>
+  </joint>
+
   <!-- Base Link -->
   <link name="base_link">
     <inertial>
@@ -27,12 +34,6 @@
       </geometry>
     </collision>
   </link>
-
-  <joint name="base_joint" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link" />
-    <origin xyz="0 0 0.033" rpy="0 0 0"/>
-  </joint>
 
   <!-- Right Wheel -->
   <link name="wheel_right_link">
