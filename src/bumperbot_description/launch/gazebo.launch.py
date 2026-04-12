@@ -67,9 +67,11 @@ def generate_launch_description():
             "/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry",
             "/model/bumperbot/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V",
             "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
+            "/world/shapes/model/bumperbot/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model",
         ],
         remappings=[
             ("/model/bumperbot/tf", "/tf"),
+            ("/world/shapes/model/bumperbot/joint_state", "/joint_states"),
         ]
 )
 
